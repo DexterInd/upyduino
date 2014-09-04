@@ -1,0 +1,17 @@
+while True:
+	print(accel.x(), accel.y(), accel.z())
+
+from pyb import I2C
+i2c = I2C(1, I2C.MASTER) 
+i2c.scan()    
+data = bytearray(6)
+addr=0x1E
+addr=70
+data=i2c.mem_read(12, addr, 0)
+data=i2c.mem_read(6, addr, 3)
+while True:
+pyb.delay(100)
+i2c.mem_read(data, addr, 0x03, timeout=5000)
+print(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11])
+i2c.mem_write(0,addr,2, timeout=5000)  
+uart.recv(data, *, timeout=5000)
